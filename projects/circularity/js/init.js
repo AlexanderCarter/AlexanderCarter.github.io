@@ -21,10 +21,19 @@ var init = function (window) {
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM SETUP ////////////////////////////
         ////////////////////////////////////////////////////////////
-        
-        
-
-
+        var circle;
+        var circles = [];
+        function drawCircle () {
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas);
+            view.addChild(circle);
+            circles.push(circle);
+        }
+        drawCircle(); 
+        drawCircle();
+        drawCircle();
+        drawCircle();
+        drawCircle();
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
@@ -35,7 +44,11 @@ var init = function (window) {
         and check to see if it has drifted off the screen.         
         */
         function update() {
-            
+         	physikz.updatePosition(circles[0]);
+	        physikz.updatePosition(circles[1]);
+	        physikz.updatePosition(circles[2]);
+	        physikz.updatePosition(circles[3]);
+	        physikz.updatePosition(circles[4]);   
            
             
         }
