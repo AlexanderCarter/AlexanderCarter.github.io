@@ -25,15 +25,15 @@ var init = function (window) {
         var circles = [];
         function drawCircle () {
             circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-            physikz.addRandomVelocity(circle, canvas);
+            physikz.addRandomVelocity(circle, canvas, 10, 10);
             view.addChild(circle);
             circles.push(circle);
         }
-        drawCircle(); 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
+        var loopsCompleted = 0;
+        while (loopsCompleted < 100) {
+            drawCircle();
+            loopsCompleted++
+        }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
@@ -44,14 +44,12 @@ var init = function (window) {
         and check to see if it has drifted off the screen.         
         */
         function update() {
-         	physikz.updatePosition(circles[0]);
-	        physikz.updatePosition(circles[1]);
-	        physikz.updatePosition(circles[2]);
-	        physikz.updatePosition(circles[3]);
-	        physikz.updatePosition(circles[4]);   
-           
-            
+            for (var eachCircle = 0; eachCircle < 100; eachCircle++) {
+                physikz.updatePosition(eachCircle);
+            }
         }
+        
+
     
         /* 
         This Function should check the position of a circle that is passed to the 
@@ -64,7 +62,15 @@ var init = function (window) {
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
             }
-            
+            else if (circle.x < 0) {
+                circle.x = 0;
+            }
+            else if (circle.y > canvas.height) {
+                circle.y = 0;
+            }
+            else if (circle.y < 0) {
+                circle.y = 0;
+            }
         }
         
         /////////////////////////////////////////////////////////////
