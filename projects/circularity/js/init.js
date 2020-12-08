@@ -44,8 +44,10 @@ var init = function (window) {
         and check to see if it has drifted off the screen.         
         */
         function update() {
-            for (var eachCircle = 0; eachCircle < 100; eachCircle++) {
+            for (var i = 0; i < 100; i++) {
+                var eachCircle = circles[i];
                 physikz.updatePosition(eachCircle);
+                game.checkCirclePosition(eachCircle)
             }
         }
         
@@ -63,13 +65,13 @@ var init = function (window) {
                 circle.x = 0;
             }
             else if (circle.x < 0) {
-                circle.x = 0;
+                circle.x = canvas.width;
             }
             else if (circle.y > canvas.height) {
                 circle.y = 0;
             }
             else if (circle.y < 0) {
-                circle.y = 0;
+                circle.y = canvas.height;
             }
         }
         
